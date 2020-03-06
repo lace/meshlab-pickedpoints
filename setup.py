@@ -28,7 +28,7 @@ class build_py(setuptools.command.build_py.build_py):
 
 
 setup(
-    name="meshlab_pickedpoints",
+    name="meshlab-pickedpoints",
     version=version_info["__version__"],
     description="Read and write MeshLab picked point (.pp) files",
     long_description=readme,
