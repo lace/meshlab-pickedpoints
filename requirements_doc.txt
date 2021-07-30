@@ -1,6 +1,6 @@
 # Imported from code.
 numpy
-vg>=1.7.0,<2.0
+vg>=2.0.0
 
 # Used in dev.py.
 executor >= 21.0
