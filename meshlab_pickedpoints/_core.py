@@ -11,7 +11,7 @@ MeshLab (on the **Edit** menu, click **PickPoints**).
 from io import StringIO
 from xml.etree import ElementTree
 import numpy as np
-import vg
+from vg.compat import v2 as vg
 
 __all__ = ["load", "dumps", "dump"]
 
