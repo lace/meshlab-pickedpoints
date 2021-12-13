@@ -8,7 +8,7 @@ click >=7.0,<9.0
 # Unit tests.
 pytest ==6.2.4
 pytest-cov == 3.0.0
-lxml==4.6.3 
+lxml==4.6.5 
 
 # Lint and formatting.
 black ==21.11b1
