@@ -4,6 +4,7 @@ def assert_equal_points(first, second):
         assert first_item["name"] == second_item["name"]
         assert first_item["point"] == second_item["point"]
 
+
 def assert_equal_xml(value, expected):
     from lxml import etree, objectify
 

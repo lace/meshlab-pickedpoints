@@ -54,9 +54,6 @@ def test_loads_error():
     assert_equal_points(result, expected_points)
 
 
-
-
-
 def test_dump():
     from io import StringIO
 
