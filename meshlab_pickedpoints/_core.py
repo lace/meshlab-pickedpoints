@@ -28,7 +28,7 @@ def load(fp):
     """
     tree = ElementTree.parse(fp)
 
-    points = {}
+    points = []
     for e in tree.iter("point"):
         try:
             point = np.array(
@@ -37,7 +37,7 @@ def load(fp):
         except ValueError:
             # This may happen if landmarks are just spaces.
             continue
-        points[e.attrib["name"]] = point
+        points.append({"name": e.attrib["name"], "point": point})
 
     return points
 
@@ -59,27 +59,32 @@ def loads(xml_string):
         f.close()
 
 
-def dumps(obj):
+def dumps(points):
     """
-    Render a dictionary of points to a string containing the contents of a
-    `.pp` file.
+    Render a list of points to a string containing the contents of a `.pp` file.
 
     Args:
-        obj (dict): A mapping of names to 3D points.
+        points (list): A list of dicts of the form `{"name": name, "point": point}`
 
     Return:
         str: A string containing the `.pp` file contents.
     """
     # TODO Maybe reconstruct this using xml.etree.
-    if not isinstance(obj, dict):
-        raise ValueError("obj should be a dictionary of points")
-    for point in obj.values():
-        vg.shape.check_value(point, (3,))
+    if not isinstance(points, list):
+        raise ValueError("obj should be a list of points")
+    for point in points:
+        if not set(point.keys()).issubset(set(["name", "point"])):
+            raise ValueError(
+                f"Expected keys to include point and optional name; got {', '.join(point.keys())}"
+            )
+        vg.shape.check_value(point["point"], (3,))
 
-    points = "\n".join(
+    points_xml_string = "\n".join(
         [
-            '<point x="{}" y="{}" z="{}" name="{}"/>'.format(x, y, z, name)
-            for name, (x, y, z) in obj.items()
+            '<point x="{}" y="{}" z="{}" name="{}"/>'.format(
+                *point["point"], point["name"]
+            )
+            for point in points
         ]
     )
 
@@ -94,17 +99,17 @@ def dumps(obj):
      {}
     </PickedPoints>
     """.format(
-        points
+        points_xml_string
     )
 
 
-def dump(obj, fp):
+def dump(points, fp):
     """
-    Render a dictionary of points to an open file.
+    Render a list of points to an open file.
 
     Args:
-        obj (dict): A mapping of names to 3D points.
+        points (list): A list of dicts of the form `{"name": name, "point": point}`
         fp: An open file pointer.
     """
-    xml_string = dumps(obj)
+    xml_string = dumps(points)
     fp.write(xml_string)
