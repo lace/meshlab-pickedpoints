@@ -26,6 +26,10 @@ New:
 ]
 ```
 
+New features:
+
+- Add conversion script: `python -m meshlab_pickedpoints.cli`.
+
 
 # 2.0.0
 
