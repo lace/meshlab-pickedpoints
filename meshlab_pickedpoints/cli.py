@@ -13,7 +13,7 @@ def convert_landmarks(pp_file, out):
 
     if out is None:
         filename, _ = os.path.splitext(os.path.basename(pp_file))
-        out = filename + ".json"
+        out = f"{filename}.json"
 
     with open(out, "w") as f:
         json.dump(loaded, f, indent=2)
