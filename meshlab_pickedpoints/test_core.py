@@ -2,7 +2,6 @@
 # https://github.com/lace/lace/blob/d3c191dffaeedc14aafa4af031d74743de9e632d/lace/serialization/meshlab_pickedpoints.py
 # https://github.com/lace/lace/blob/d3c191dffaeedc14aafa4af031d74743de9e632d/lace/test_meshlab_pickedpoints.py
 
-import json
 from lxml import etree, objectify
 import numpy as np
 import pytest
