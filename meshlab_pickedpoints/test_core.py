@@ -24,10 +24,10 @@ example_xml_string = """
 example_points = [
     {
         "name": "Femoral_epicon_med_lft",
-        "point": np.array([0.044259, 0.467733, -0.060032]),
+        "point": [0.044259, 0.467733, -0.060032],
     },
-    {"name": "Clavicale_lft", "point": np.array([0.017893, 1.335375, 0.018390])},
-    {"name": "Substernale", "point": np.array([0.000625, 1.124424, 0.080930])},
+    {"name": "Clavicale_lft", "point": [0.017893, 1.335375, 0.018390]},
+    {"name": "Substernale", "point": [0.000625, 1.124424, 0.080930]},
 ]
 
 
@@ -35,7 +35,7 @@ def assert_equal_points(first, second):
     assert len(first) == len(second)
     for first_item, second_item in zip(first, second):
         assert first_item["name"] == second_item["name"]
-        np.testing.assert_array_equal(first_item["point"], second_item["point"])
+        assert first_item["point"] == second_item["point"]
 
 
 def test_load():
@@ -74,9 +74,9 @@ def test_loads_error():
     expected_points = [
         {
             "name": "Femoral_epicon_med_lft",
-            "point": np.array([0.044259, 0.467733, -0.060032]),
+            "point": [0.044259, 0.467733, -0.060032],
         },
-        {"name": "Substernale", "point": np.array([0.000625, 1.124424, 0.080930])},
+        {"name": "Substernale", "point": [0.000625, 1.124424, 0.080930]},
     ]
 
     result = loads(xml_with_empty_point)

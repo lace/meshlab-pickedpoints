@@ -10,8 +10,6 @@ MeshLab (on the **Edit** menu, click **PickPoints**).
 
 from io import StringIO
 from xml.etree import ElementTree
-import numpy as np
-from vg.compat import v2 as vg
 
 __all__ = ["load", "dumps", "dump"]
 
@@ -31,9 +29,7 @@ def load(fp):
     points = []
     for e in tree.iter("point"):
         try:
-            point = np.array(
-                [float(e.attrib["x"]), float(e.attrib["y"]), float(e.attrib["z"])]
-            )
+            point = [float(e.attrib["x"]), float(e.attrib["y"]), float(e.attrib["z"])]
         except ValueError:
             # This may happen if landmarks are just spaces.
             continue
@@ -77,7 +73,8 @@ def dumps(points):
             raise ValueError(
                 f"Expected keys to include point and optional name; got {', '.join(point.keys())}"
             )
-        vg.shape.check_value(point["point"], (3,))
+        assert isinstance(point["point"], list)
+        assert len(point["point"]) == 3
 
     points_xml_string = "\n".join(
         [
