@@ -1,4 +1,4 @@
--r requirements.txt
+-r requirements_cli.txt
 -r requirements_doc.txt
 
 # Used in dev.py.

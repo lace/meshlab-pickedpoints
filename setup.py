@@ -7,11 +7,10 @@ from setuptools import find_packages, setup
 version_info = {}
 exec(open("meshlab_pickedpoints/package_version.py").read(), version_info)
 
-with open("README.md") as f:
-    readme = f.read()
 
-with open("requirements.txt") as f:
-    install_requires = f.read()
+def load(filename):
+    return open(filename, "rb").read().decode("utf-8")
+
 
 exclude = ["**/test_*.py"]
 
@@ -31,7 +30,7 @@ setup(
     name="meshlab-pickedpoints",
     version=version_info["__version__"],
     description="Read and write MeshLab picked point (.pp) files",
-    long_description=readme,
+    long_description=load("README.md"),
     long_description_content_type="text/markdown",
     author="Metabolize, Minnow Software, Body Labs, and other contributors",
     author_email="github@paulmelnikow.com",
@@ -41,7 +40,7 @@ setup(
         "Documentation": "https://meshlab-pickedpoints.readthedocs.io/en/stable/",
     },
     packages=find_packages(),
-    install_requires=install_requires,
+    extras_require={"cli": load("requirements_cli.txt")},
     cmdclass={"build_py": build_py},
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
