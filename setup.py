@@ -10,9 +10,6 @@ exec(open("meshlab_pickedpoints/package_version.py").read(), version_info)
 with open("README.md") as f:
     readme = f.read()
 
-with open("requirements.txt") as f:
-    install_requires = f.read()
-
 exclude = ["**/test_*.py"]
 
 
@@ -41,7 +38,6 @@ setup(
         "Documentation": "https://meshlab-pickedpoints.readthedocs.io/en/stable/",
     },
     packages=find_packages(),
-    install_requires=install_requires,
     cmdclass={"build_py": build_py},
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
