@@ -6,8 +6,8 @@ from . import load
 @click.argument("pp_file")
 @click.option("-o", "--out", help="Output path")
 def convert_landmarks(pp_file, out):
+    import json
     import os
-    import simplejson as json
 
     loaded = load(pp_file)
 
