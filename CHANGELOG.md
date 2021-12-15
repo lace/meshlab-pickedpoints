@@ -28,7 +28,7 @@ New:
 
 New features:
 
-- Add conversion script: `python -m meshlab_pickedpoints.cli`.
+- Add picked points to JSON conversion script: `python -m meshlab_pickedpoints.cli`.
 
 
 # 2.0.0
