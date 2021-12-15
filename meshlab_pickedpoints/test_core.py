@@ -3,7 +3,6 @@
 # https://github.com/lace/lace/blob/d3c191dffaeedc14aafa4af031d74743de9e632d/lace/test_meshlab_pickedpoints.py
 
 from lxml import etree, objectify
-import numpy as np
 import pytest
 from ._core import dump, load, loads
 
@@ -21,11 +20,21 @@ example_xml_string = """
 </PickedPoints>
 """
 
-example_points = {
-    "Femoral_epicon_med_lft": np.array([0.044259, 0.467733, -0.060032]),
-    "Clavicale_lft": np.array([0.017893, 1.335375, 0.018390]),
-    "Substernale": np.array([0.000625, 1.124424, 0.080930]),
-}
+example_points = [
+    {
+        "name": "Femoral_epicon_med_lft",
+        "point": [0.044259, 0.467733, -0.060032],
+    },
+    {"name": "Clavicale_lft", "point": [0.017893, 1.335375, 0.018390]},
+    {"name": "Substernale", "point": [0.000625, 1.124424, 0.080930]},
+]
+
+
+def assert_equal_points(first, second):
+    assert len(first) == len(second)
+    for first_item, second_item in zip(first, second):
+        assert first_item["name"] == second_item["name"]
+        assert first_item["point"] == second_item["point"]
 
 
 def test_load():
@@ -38,15 +47,13 @@ def test_load():
     finally:
         sample_f.close()
 
-    assert set(result.keys()) == set(example_points.keys())
-    assert all(np.array_equal(v, result[k]) for k, v in example_points.items())
+    assert_equal_points(result, example_points)
 
 
 def test_loads():
     result = loads(example_xml_string)
 
-    assert set(result.keys()) == set(example_points.keys())
-    assert all(np.array_equal(v, result[k]) for k, v in example_points.items())
+    assert_equal_points(result, example_points)
 
 
 def test_loads_error():
@@ -63,15 +70,17 @@ def test_loads_error():
     <point x="0.000625" y="1.124424" z="0.08093" name="Substernale"/>
     </PickedPoints>
     """
-    expected_points = {
-        "Femoral_epicon_med_lft": np.array([0.044259, 0.467733, -0.060032]),
-        "Substernale": np.array([0.000625, 1.124424, 0.080930]),
-    }
+    expected_points = [
+        {
+            "name": "Femoral_epicon_med_lft",
+            "point": [0.044259, 0.467733, -0.060032],
+        },
+        {"name": "Substernale", "point": [0.000625, 1.124424, 0.080930]},
+    ]
 
     result = loads(xml_with_empty_point)
 
-    assert set(result.keys()) == set(expected_points.keys())
-    assert all(np.array_equal(v, result[k]) for k, v in expected_points.items())
+    assert_equal_points(result, expected_points)
 
 
 def assert_equal_xml(value, expected):
@@ -98,13 +107,22 @@ def test_dump():
     assert_equal_xml(result_str, example_xml_string)
 
 
-def test_dump_error():
+def test_dump_errors():
     from io import StringIO
 
     result_f = StringIO()
 
     try:
-        with pytest.raises(ValueError, match="obj should be a dictionary of points"):
+        with pytest.raises(ValueError, match="obj should be a list of points"):
             dump(-1, result_f)
+    finally:
+        result_f.close()
+
+    try:
+        with pytest.raises(
+            ValueError,
+            match="Expected keys to include point and optional name; got name, point, badkey",
+        ):
+            dump([{"name": "foo", "point": None, "badkey": -1}], result_f)
     finally:
         result_f.close()
