@@ -1,9 +1,8 @@
--r requirements.txt
+-r requirements_cli.txt
 -r requirements_doc.txt
 
 # Used in dev.py.
 executor >= 21.0
-click >=7.0,<9.0
 
 # Unit tests.
 pytest ==6.2.5

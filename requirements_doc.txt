@@ -1,6 +1,6 @@
 # Used in dev.py.
 executor >= 21.0
-click >=7.0,<9.0
+click >=8.0,<9.0
 
 # Documentation.
 Sphinx
