@@ -7,7 +7,7 @@ executor >= 21.0
 # Unit tests.
 pytest ==6.2.5
 pytest-cov == 3.0.0
-lxml==4.6.5 
+lxml==4.8.0 
 
 # Lint and formatting.
 black ==21.12b0
