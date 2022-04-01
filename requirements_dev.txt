@@ -5,7 +5,7 @@
 executor >= 21.0
 
 # Unit tests.
-pytest ==6.2.5
+pytest ==7.1.1
 pytest-cov == 3.0.0
 lxml==4.6.5 
 
