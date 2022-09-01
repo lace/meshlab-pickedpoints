@@ -10,6 +10,6 @@ pytest-cov == 3.0.0
 lxml==4.6.5 
 
 # Lint and formatting.
-black ==21.12b0
+black ==22.8.0
 flake8 ==4.0.1
 flake8-import-order ==0.18.1
