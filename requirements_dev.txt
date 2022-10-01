@@ -6,7 +6,7 @@ executor >= 21.0
 
 # Unit tests.
 pytest ==6.2.5
-pytest-cov == 3.0.0
+pytest-cov == 4.0.0
 lxml==4.6.5 
 
 # Lint and formatting.
