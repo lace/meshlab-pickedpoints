@@ -5,11 +5,11 @@
 executor >= 21.0
 
 # Unit tests.
-pytest ==6.2.5
-pytest-cov == 3.0.0
-lxml==4.6.5 
+pytest ==7.2.0
+pytest-cov == 4.0.0
+lxml==4.9.1
 
 # Lint and formatting.
 black ==22.10.0
-flake8 ==4.0.1
-flake8-import-order ==0.18.1
+flake8 ==6.0.0
+flake8-import-order ==0.18.2
