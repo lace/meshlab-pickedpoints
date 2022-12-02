@@ -5,7 +5,7 @@ description = "Read and write MeshLab picked point (.pp) files"
 authors = ["Paul Melnikow <github@paulmelnikow.com>", "Metabolize, Minnow Software, Body Labs, and other contributors"]
 license = "BSD-2-Clause"
 include = ["CHANGELOG.md"]
-exclude = ["*/test_*.py"]
+exclude = ["*/test_*.py", "*/testing_*.py"]
 repository = "https://github.com/lace/meshlab-pickedpoints"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
