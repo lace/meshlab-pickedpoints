@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "meshlab-pickedpoints"
+version = "3.0.0"
+description = "Read and write MeshLab picked point (.pp) files"
+authors = ["Paul Melnikow <github@paulmelnikow.com>", "Metabolize, Minnow Software, Body Labs, and other contributors"]
+license = "BSD-2-Clause"
+include = ["CHANGELOG.md"]
+exclude = ["*/test_*.py", "*/testing_*.py"]
+repository = "https://github.com/lace/meshlab-pickedpoints"
+documentation = "https://meshlab-pickedpoints.netlify.app/"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Manufacturing",
+    "Topic :: Artistic Software",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4"
+click = {version = "^8.0.3", optional = true}
+
+[tool.poetry.dev-dependencies]
+black = "22.10.0"
+click = "8.1.3"
+coverage = "6.3.2"
+executor = "23.2"
+flake8 = "6.0.0"
+flake8-import-order = "0.18.2"
+lxml = "4.9.1"
+myst-parser = "0.17.2"
+pytest = "7.2.0"
+pytest-cov = "4.0.0"
+Sphinx = "4.3.2"
+sphinxcontrib-apidoc = "0.3.0"
+twine = "4.0.2"
+
+[tool.poetry.extras]
+cli = ["click"]
+
+[build-system]
+# Lint requires setuptools.
+requires = ["setuptools", "poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.report]
+omit = ["**/test_*.py"]
+fail_under = 100.0
