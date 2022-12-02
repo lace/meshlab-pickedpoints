@@ -1,6 +1,14 @@
 # Changelog
 
-# 2.0.0
+# 4.0.0
+
+BREAKING CHANGES:
+
+- Remove `__version__` property.
+- Require Python 3.8.1 or later.
+
+
+# 3.0.0
 
 BREAKING CHANGES:
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "meshlab-pickedpoints"
-version = "3.0.0"
+version = "4.0.0"
 description = "Read and write MeshLab picked point (.pp) files"
 authors = ["Paul Melnikow <github@paulmelnikow.com>", "Metabolize, Minnow Software, Body Labs, and other contributors"]
 license = "BSD-2-Clause"
