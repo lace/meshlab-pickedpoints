@@ -35,16 +35,12 @@ jobs:
       - run:
           name: Run tests
           when: always
-          command: |
-            . venv/bin/activate
-            ./dev.py coverage
+          command: ./dev.py coverage
 
       - run:
           name: Run the doc build
           when: always
-          command: |
-            . venv/bin/activate
-            ./dev.py doc
+          command: ./dev.py doc
 
   lint:
     <<: *with_python
@@ -58,9 +54,7 @@ jobs:
 
       - run:
           name: Check lint
-          command: |
-            . venv/bin/activate
-            ./dev.py lint
+          command: ./dev.py lint
 
   format:
     <<: *with_python
@@ -74,9 +68,7 @@ jobs:
 
       - run:
           name: Check code format
-          command: |
-            . venv/bin/activate
-            ./dev.py black-check
+          command: ./dev.py black-check
 
 workflows:
   version: 2
