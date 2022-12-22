@@ -2,9 +2,6 @@
 
 # 4.1.0
 
-BREAKING CHANGES:
-
-- Downgrade flake8 dependency
 - Support Python 3.7
 
 
