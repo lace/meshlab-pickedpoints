@@ -1,5 +1,10 @@
 # Changelog
 
+# 4.1.0
+
+- Support Python 3.7
+
+
 # 4.0.0
 
 BREAKING CHANGES:
