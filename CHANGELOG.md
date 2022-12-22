@@ -1,5 +1,13 @@
 # Changelog
 
+# 4.1.0
+
+BREAKING CHANGES:
+
+- Downgrade flake8 dependency
+- Support Python 3.7
+
+
 # 4.0.0
 
 BREAKING CHANGES:
